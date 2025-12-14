@@ -180,6 +180,21 @@ function shuffleInPlace(arr) {
   return arr;
 }
 
+/**
+ * 選択肢の順をシャッフルし、answerIndexも追従させる
+ * @param {Question} q
+ * @returns {Question}
+ */
+function shuffleQuestionChoices(q) {
+  const correct = q.choices[q.answerIndex];
+  const shuffled = shuffleInPlace([...q.choices]);
+  const newAnswerIndex = shuffled.indexOf(correct);
+  if (newAnswerIndex < 0) {
+    throw new Error(`Answer not found after shuffle: ${q.id}`);
+  }
+  return { ...q, choices: shuffled, answerIndex: newAnswerIndex };
+}
+
 function clamp(n, min, max) {
   return Math.max(min, Math.min(max, n));
 }
@@ -200,7 +215,8 @@ function rankLabel(score, total) {
  */
 function buildQuiz(bank, count, doShuffle) {
   const src = doShuffle ? shuffleInPlace([...bank]) : [...bank];
-  return src.slice(0, clamp(count, 1, bank.length));
+  // NOTE: 「正解が毎回1番」にならないよう、選択肢は毎回シャッフルする
+  return src.slice(0, clamp(count, 1, bank.length)).map(shuffleQuestionChoices);
 }
 
 const screenStart = $("screen-start");

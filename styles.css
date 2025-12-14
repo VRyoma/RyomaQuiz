@@ -133,14 +133,20 @@ body{
   width:100%;
   border-radius: 16px;
   padding: 12px 12px;
-  border: 1px solid rgba(255,255,255,.10);
-  background: rgba(2,6,23,.35);
+  color: #f8fafc;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(2,6,23,.62);
   cursor:pointer;
+  box-shadow: 0 10px 24px rgba(0,0,0,.22);
 }
-.choiceBtn:hover{background: rgba(2,6,23,.55); border-color: rgba(255,255,255,.18)}
-.choiceBtn[disabled]{opacity:.75; cursor:not-allowed}
-.choiceKey{display:inline-grid; place-items:center; width:26px; height:26px; border-radius:10px; margin-right: 10px; font-weight:700; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.10)}
-.choiceText{vertical-align:middle}
+.choiceBtn:hover{background: rgba(2,6,23,.78); border-color: rgba(255,255,255,.26)}
+.choiceBtn:focus-visible{
+  outline: 3px solid rgba(124,58,237,.55);
+  outline-offset: 2px;
+}
+.choiceBtn[disabled]{opacity:.88; cursor:not-allowed}
+.choiceKey{display:inline-grid; place-items:center; width:26px; height:26px; border-radius:10px; margin-right: 10px; font-weight:800; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.18)}
+.choiceText{vertical-align:middle; font-weight: 650; letter-spacing: .01em}
 
 .choiceBtn.correct{border-color: rgba(34,197,94,.6); background: rgba(34,197,94,.12)}
 .choiceBtn.wrong{border-color: rgba(239,68,68,.55); background: rgba(239,68,68,.10)}
